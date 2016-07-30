@@ -30,6 +30,22 @@ var albumMarconi = {
     ]
 };
 
+//Third Album (Assignment)
+var albumDali = {
+    title: 'Salvador Dali: Greatest Hits',
+    artist: 'Salvador Dali',
+    label: 'Surrealism',
+    year: '1931',
+    albumArtUrl: 'assets/images/album_covers/22.png',
+    songs: [
+        { title: 'The Persistence of Memory', duration: '9:31' },
+        { title: 'Swans Reflecting Elephants', duration: '7:39' },
+        { title: 'The Temptation of St. Anthony', duration: '6:28' },
+        { title: 'The Elephants', duration: '8:46' },
+        { title: 'Galatea of the Spheres', duration: '5:27' },
+    ]
+};
+
 var createSongRow = function(songNumber, songName, songLength) {
     var template =
           '<tr class="album-view-song-item">'
@@ -67,4 +83,9 @@ var setCurrentAlbum = function(album) {
 
 window.onload = function() {
     setCurrentAlbum(albumPicasso);
+    window.addEventListener('mousedown', function(Event) {
+        for(var i = 0; i < album.albumArtUrl; i++) {
+            return album.albumArtUrl[i];
+        };
+    })
 };
