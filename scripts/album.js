@@ -87,7 +87,7 @@ var getSongItem = function (element) {
             return element.querySelector('.song-item-number');
         case 'song-item-title':
         case 'song-item-duration':
-            return findParentByClassName(element, 'album-view-song-item').querySelector('song-item-number');
+            return findParentByClassName(element, 'album-view-song-item').querySelector('.song-item-number');
         case 'song-item-number':
             return element;
         default:
@@ -96,7 +96,9 @@ var getSongItem = function (element) {
 };
 
 var clickHandler = function(targetElement) {
+    
     var songItem = getSongItem(targetElement);
+    
     if (currentlyPlayingSong === null) {
         songItem.innerHTML = pauseButtonTemplate;
         currentlyPlayingSong = songItem.getAttribute('data-song-number');
@@ -116,7 +118,7 @@ var songRows = document.getElementsByClassName('album-view-song-item');
 
 // Album button templates
 var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
-var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause></span></a>';
+var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
 
 // Store state of playing songs
 var currentlyPlayingSong = null;
@@ -144,7 +146,7 @@ window.onload = function() {
             }
         });
         
-    songRows[i].addEventListener('click', function(event) {
+        songRows[i].addEventListener('click', function(event) {
             clickHandler(event.target);
         });
     }
