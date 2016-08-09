@@ -187,21 +187,19 @@ var getSongNumberCell = function(number) {
 
 var $mainControlsPlayPause = $('.main-controls .play-pause');
 
-var currentPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
-
 var togglePlayFromPlayerBar = function() {
-    if (currentSoundFile.isPaused() && $mainControlsPlayPause.click(playerBarPlayButton)) {
+    if (currentSoundFile.isPaused() && $mainControlsPlayPause.click()) {
         //change song number cell from play to pause
-        currentPlayingCell.html(pauseButtonTemplate;)
+        currentlyPlayingSongNumber.html(pauseButtonTemplate);
         //change html of player bar to pause
-        $mainControlsPlayPause.text(playerBarPauseButton);
+        $mainControlsPlayPause.html(playerBarPauseButton);
         //play song
         currentSoundFile.play();
-    } else if (currentSoundFile.play() && $mainControlsPlayPause.click(playerBarPauseButton)) {
+    } else if (currentSoundFile.play() && $mainControlsPlayPause.click()) {
         //change song number cell from pause to play
-        currentPlayingCell.html(playButtonTemplate);
+        currentlyPlayingSongNumber.html(playButtonTemplate);
         //change html of player bar to play
-        $mainControlsPlayPause.text(playerBarPlayButton);
+        $mainControlsPlayPause.html(playerBarPlayButton);
         //pause song
         currentSoundFile.pause();
     }
