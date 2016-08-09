@@ -14,7 +14,6 @@ var createSongRow = function(songNumber, songName, songLength) {
     
         if (currentlyPlayingSongNumber !== null) {
             var currentlyPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
-            
             currentlyPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
             currentlyPlayingCell.html(currentlyPlayingSongNumber);
         } 
@@ -63,6 +62,7 @@ var createSongRow = function(songNumber, songName, songLength) {
     $row.hover(onHover, offHover);
     return $row;
 };
+
 
 var setCurrentAlbum = function(album) {
     
@@ -185,6 +185,29 @@ var getSongNumberCell = function(number) {
     return $('.song-item-number[data-song-number="' + number + '"]')
 };
 
+var $mainControlsPlayPause = $('.main-controls .play-pause');
+
+var currentPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
+
+var togglePlayFromPlayerBar = function() {
+    if (currentSoundFile.isPaused() && $mainControlsPlayPause.click(playerBarPlayButton)) {
+        //change song number cell from play to pause
+        currentPlayingCell.html(pauseButtonTemplate;)
+        //change html of player bar to pause
+        $mainControlsPlayPause.text(playerBarPauseButton);
+        //play song
+        currentSoundFile.play();
+    } else if (currentSoundFile.play() && $mainControlsPlayPause.click(playerBarPauseButton)) {
+        //change song number cell from pause to play
+        currentPlayingCell.html(playButtonTemplate);
+        //change html of player bar to play
+        $mainControlsPlayPause.text(playerBarPlayButton);
+        //pause song
+        currentSoundFile.pause();
+    }
+    
+};
+
 // Album button templates
 var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
 var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
@@ -205,4 +228,5 @@ $(document).ready(function() {
     setCurrentAlbum(albumPicasso);
     $previousButton.click(previousSong);
     $nextButton.click(nextSong);
+    $mainControlsPlayPause.click(togglePlayFromPlayerBar());
 });
